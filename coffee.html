@@ -1,0 +1,359 @@
+ <!DOCTYPE html>
+<head>
+<!-- <meta charset="UTF-8"> -->
+<script src="https://d3js.org/d3.v4.min.js"></script>
+
+<link rel="stylesheet" href="css/normalize.css">
+<link rel="stylesheet" href="css/skeleton.css">
+
+<style>
+  body {
+    font-family:Century Gothic,Arial,Helvetica,sans-serif;
+    font-size:smaller;
+    text-align: center;
+    margin: 0 auto;
+    text-transform: uppercase;
+  }
+
+  h1, h3, p {
+    text-align: center;
+    margin:5px;
+  }
+
+  a {
+    color:black;
+    text-decoration: none;
+  }
+
+  path {
+    stroke: #fff;
+    stroke-width:1px;
+  }
+
+  text {
+    border: 2px solid blue;
+  }
+
+  .watercolor .wedge{
+    /*-webkit-mask-image: url("./coffeewheeltexture.png");
+    mask-image: url("./coffeewheeltexture.png");*/
+    /*-webkit-mask-image: url("./coffeewheeltexture.png");
+    mask-image: url("./coffeewheeltexture.png");*/
+    background-image:url("./coffeewheeltexture.png");
+    background-repeat: repeat;
+  }
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="row">
+    <p>Kelsey Hutchison's animated version of</p>
+    <h3><a target="_blank" href="https://counterculturecoffee.com/">Counter Culture's</a></h3>
+    <h1><a target="_blank" href="https://counterculturecoffee.com/learn/resource-center/coffee-tasters-flavor-wheel">Coffee Taster's Flavor Wheel</a></h1>
+  </div>
+
+
+  <div class="row" id="svg_container">
+
+  </div>
+
+
+ </div>
+
+<script>
+
+  var colormap = {
+
+       "Fruit" : " #d25785 " ,
+         "Citrus" : " #f7ef70 " ,
+           "Lemon & Lemonade" : " #f5ee45 " ,
+           "Lime" : " #9ccc66 " ,
+           "Grapefruit" : " #faf5a3 " ,
+           "Clementine" : " #fcd538 " ,
+           "Tangerine" : " #fbcaac " ,
+           "Mandarin Orange" : " #f7a472 " ,
+           "Orange":"#f27265",
+
+         "Apple/Pear" : " #cbdc52 " ,
+           "Green Apple" : " #c2dfaf " ,
+           "Red Apple":"#ea4c4d",
+
+         "Melon" : " #a3d16e " ,
+           "Watermelon" : " #90bf6f " ,
+           "Honeydew" : " #90bf6f " ,
+           "Canteloupe": " #f6ef6b ",
+
+         "Grape" : " #8d549b " ,
+           "White Grape" : " #8d549b " ,
+           "Green Grape" : " #f8f7c9 " ,
+           "Red Grape" : " #ccb1c0 " ,
+           "Concord Grape": " #a098c9 ",
+
+         "Tropical Fruit" : " #f8f17f " ,
+           "Lychee" : " #fcfbe6 " ,
+           "Star Fruit" : " #f9f8b7 " ,
+           "Tamarind" : " #bed8ef " ,
+           "Passion Fruit" : " #fdfad7 " ,
+           "Pineapple" : " #f9f5ac " ,
+           "Mango" : " #fddb9b " ,
+           "Papaya" : " #fdcca4 " ,
+           "Kiwi" : " #fcfad3 " ,
+           "Banana" : " #f5f183 " ,
+           "Coconut": " #fdfce0 ",
+
+         "Stone Fruit" : " #fcc59e " ,
+           "Peach" : " #f1a456 " ,
+           "Nectarine" : " #faa441 " ,
+           "Apricot" : " #faad5f " ,
+           "Plum" : " #ee6ea9 " ,
+           "Cherry" : " #f27a7b " ,
+           "Black Cherry": " #944a57 ",
+
+         "Berry" : " #675ca0 " ,
+           "Cranberry" : " #ce4f6c " ,
+           "Raspberry" : " #e83e97 " ,
+           "Strawberry" : " #b84952 " ,
+           "Blueberry" : " #577bb5 " ,
+           "Red Currant" : " #f07893 " ,
+           "Black Currant": " #746f8f " ,
+
+         "Dried Fruit": " #4c6db2 " ,
+           "Golden Raisin" : " #f4c985 " ,
+           "Raisin" : " #8f80bb " ,
+           "Dried Fig" : " #bbbbdd " ,
+           "Dried Dates" : " #b5b3da " ,
+           "Prune": " #4b4d80 " ,
+
+       "Chocolate": " #775e48 " ,
+         "Cacao Nibs" : " #7b616c " ,
+         "Dark Chocolate" : " #8c6053 " ,
+         "Bakers Chocolate" : " #54392e " ,
+         "Bittersweet Chocolate" : " #987454 " ,
+         "Cocoa Powder" : " #c59277 " ,
+         "Milk Chocoate": " #bfa48f " ,
+
+       "Sweet & Sugary": " #fdf8be " ,
+         "Vanilla" : " #fbfadb " ,
+         "Nougat" : " #fbfbd7 " ,
+         "Honey" : " #f7eb71 " ,
+         "Butter" : " #fdfad7 " ,
+         "Cream" : "#fdfce8  " ,
+         "Marshmallow": "#fdfdf3",
+         "Sugar Cane" : " #fefced " ,
+         "Brown Sugar" : " #fffeec " ,
+         "Caramel" : " #efaa5d " ,
+         "Maple Syrup" : " #da976d " ,
+         "Molasses" : " #907a6d " ,
+         "Cola": " #6b5e56 " ,
+
+       "Nut": " #fbc984 " ,
+          "Walnut": " #b7957a " ,
+         "Peanut" : " #ccb583 " ,
+         "Cashew" : " #faf8c5 " ,
+        "Pecan" : " #f7f4a3 " ,
+         "Hazelnut" : " #f0c98e " ,
+         "Almond" : " #fcfac9 " ,
+
+       "Grain & Cereal": " #cdbe95 " ,
+         "Fresh Bread" : " #e7d3a1 " ,
+         "Barley" : " #fdc18b " ,
+         "Wheat" : " #d0c9ad " ,
+         "Rye" : " #fac291 " ,
+         "Graham Cracker" : " #cf9c63 " ,
+         "Granola" : " #cf9e73 " ,
+         "Sweet Bread Pastry": " #f6d59f " ,
+
+       "Roast": " #aca4a2 " ,
+         "Carbon" : " #2e464a " ,
+         "Smokey" : " #a5ad98 " ,
+         "Burnt Sugar" : " #bca796 " ,
+         "Toast": " #ccaa53 " ,
+
+       "Spice": " #ec8e86 " ,
+         "Clove" : " #6c7c72 " ,
+         "Licorice-Anise" : " #252420 " ,
+         "Curry" : " #fdc499 " ,
+         "Nutmeg" : " #fbdea2 " ,
+         "Ginger" : " #f5cb81 " ,
+         "Coriander" : " #f1f0ba " ,
+         "Cinnamon" : " #de8b61 " ,
+         "White Pepper" : " #d0d0ae " ,
+         "Black Pepper": " #c5ccab " ,
+
+       "Savory": " #d96150 " ,
+         "Tomato" : " #dd3d3d " ,
+         "Sundried Tomato" : " #dc636c " ,
+         "Soy Sauce" : " #684f4a " ,
+         "Meat-Like" : " #703d3a " ,
+         "Leathery": " #dc9873 " ,
+
+       "Vegetal Earthy Herb": " #afb959 " ,
+         "Bergamot" : " #afb959 " ,
+         "Hops" : " #afb959 " ,
+         "Black Tea" : " #78715f " ,
+         "Green Tea" : " #cac990 " ,
+         "Mint" : " #e5efbd " ,
+         "Sage" : " #cddcb5 " ,
+         "Dill" : " #9dbd7a " ,
+         "Grassy" : " #81c781 " ,
+         "Snow Pea" : " #dbedb9 " ,
+         "Sweet Pea" : " #bad996 " ,
+         "Mushroom" : " #d3b96e " ,
+         "Squash" : " #f3e84e " ,
+         "Green Pepper" : " #7ac487 " ,
+         "Olive" : " #a1b673 " ,
+         "Leafy Greens" : " #25b88b " ,
+         "Hay Straw" : " #e2cd64 " ,
+         "Tobacco" : " #e9ac7f " ,
+         "Cedar" : " #c36c59 " ,
+         "Fresh Wood" : " #edba81 " ,
+         "Soil": " #201b18 " ,
+
+       "Floral": " #faf6ad " ,
+         "Lemongrass" : " #fcfad1 " ,
+         "Orange Blossom" : " #f8fbae " ,
+         "Jasmine-Honeysuckle" : " #fcfaed " ,
+         "Magnolia" : " #ffffe1 " ,
+         "Lavender" : " #b5adc4 " ,
+         "Rose Hips" : " #fef8fa " ,
+         "Hibiscus": " #dba6c0 "
+  }
+
+  var width = 960,
+      height = 700,
+      radius = (Math.min(width, height) / 2) - 5;
+
+  var formatNumber = d3.format(",d");
+
+  var x = d3.scaleLinear()
+      .range([0, 2 * Math.PI]);
+
+  // var y = d3.scaleSqrt()
+  var y = d3.scaleLinear()
+      .range([0, radius]);
+
+  var partition = d3.partition().padding(0);
+
+  var arc = d3.arc()
+      .startAngle(function(d) { return Math.max(0, Math.min(2 * Math.PI, x(d.x0))); })
+      .endAngle(function(d) { return Math.max(0, Math.min(2 * Math.PI, x(d.x1))); })
+      .innerRadius(function(d) { return Math.max(0, y(d.y0)); })
+      .outerRadius(function(d) { return Math.max(0, y(d.y1)); });
+
+  var svg = d3.select("#svg_container").append("svg")
+      .attr("width", width)
+      .attr("height", height)
+      .append("g")
+      .attr("transform", "translate(" + width / 2 + "," + (height / 2) + ")");
+
+
+  d3.json("counterculture.json", function(error, root) {
+    if (error) throw error;
+
+    root = d3.hierarchy(root);
+    root.sum(function(d) { return d.children ? 0 : 1});//this gets rid of extra space around children nodes
+
+    var g = svg.selectAll("g")
+          .data(partition(root).descendants())
+          .enter().append("g");
+
+    var path = g.append("path")
+        .attr("d", arc)
+        .attr("class", "watercolor")
+
+        //if d.children exists, return d.name else return d.parent.name
+        // .style("fill", function(d) {return color((d.children ? d : d.parent).name); })
+        .style("fill", function(d) {
+          if (colormap[d.data.name]) {
+            return colormap[d.data.name];
+          } else {
+            return "#fff";
+          }
+        })
+        .style("opacity", ".8")
+        .on("click", click);
+
+      path.append("title")
+          .text(function(d) { return d.data.name});// + "\n" + formatNumber(d.value); });
+
+      var text = g.append("text").text(function(d) { console.log("Q", d.data.name); return d.data.name})
+          .classed("label", true)
+          .attr("class", "names")
+          .attr("x", function(d) { return d.x; })
+          .attr("text-anchor", "middle")
+          // translate to the desired point and set the rotation
+          .attr("transform", function(d) {
+              if (d.depth > 0) {
+                  return "translate(" + arc.centroid(d) + ")" +
+                         "rotate(" + getAngle(d) + ")";
+              }  else {
+                  return null;
+              }
+          })
+          .attr("dx", "6") // margin
+          .attr("dy", ".35em") // vertical-align
+          .attr("pointer-events", "none");
+
+      function getAngle(d) {
+          // Offset the angle by 90 deg since the '0' degree axis for arc is Y axis, while
+          // for text it is the X axis.
+          var thetaDeg = (180 / Math.PI * (arc.startAngle()(d) + arc.endAngle()(d)) / 2 - 90);
+          // If rotating the text by >90 deg, then flip it. text-anchor middle is important here
+          return (thetaDeg > 90) ? thetaDeg - 180 : thetaDeg;
+      }
+
+      function click(d) {
+        // text.transition().duration(1500).attr("opacity", 0);
+            d3.selectAll(".names").transition().duration(1500).attr("opacity", 0);
+            console.log("THIS:::",d);
+            svg.transition()
+                .duration(750)
+                .tween("scale", function() {
+                  var xd = d3.interpolate(x.domain(), [d.x0, d.x1]),
+                      yd = d3.interpolate(y.domain(), [d.y0, 1]),
+                      yr = d3.interpolate(y.range(), [d.y0 ? 20 : 0, radius]);
+                  return function(t) { x.domain(xd(t)); y.domain(yd(t)).range(yr(t)); };
+                })
+              .selectAll("path")
+                .attrTween("d", function(d) { return function() { return arc(d); }; })
+                .on("end", function(e,i) {
+                  // console.log("C", e.data.name, d.data.name, e.x0, d.x0, e.x1, d.x1)
+                  if (e.x0.toFixed(4) >= d.x0.toFixed(4) && e.x1.toFixed(4) <= d.x1.toFixed(4) || e.data.name == d.data.name) {
+                    var childText = d3.select(this.parentNode).select("text").text(function(x) { return e.data.name})
+                        .classed("label", true)
+                        .attr("class", "names")
+                        .transition().duration(500)
+                        .attr("opacity", 1)
+                        .attr("x", function(e) { return e.x; })
+                        .attr("text-anchor", "middle")
+                        //translate and rotate text
+                        .attr("transform", function(f) {
+                          if (f.depth > 0 && (e.data.name == d.data.name)) {
+                            //to keep center label straight
+                            return "translate(" + arc.centroid(f) + ")";
+                          }
+                            else if (f.depth > 0) {
+                                return "translate(" + arc.centroid(f) + ")" +
+                                       "rotate(" + getAngle(f) + ")";
+                            }  else {
+                                return null;
+                            }
+                        })
+
+                        .attr("dx", "6") // margin
+                        .attr("dy", ".35em") // vertical-align
+                        .attr("pointer-events", "none");
+                      }
+                })
+      }//click function
+  });//d3.json
+
+
+  d3.select(self.frameElement).style("height", height + "px");
+
+</script>
+
+</body>

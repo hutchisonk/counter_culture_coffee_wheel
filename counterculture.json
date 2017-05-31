@@ -1,0 +1,164 @@
+{
+ "name": "CC Coffee Wheel",
+ "children": [
+  {"name": "Fruit", "size":5, "children": [
+    {"name": "Citrus", "size":5, "children": [
+      {"name": "Lemon & Lemonade", "size":10},
+      {"name": "Lime", "size":10},
+      {"name": "Grapefruit", "size":10},
+      {"name": "Clementine", "size":10},
+      {"name": "Tangerine", "size":10},
+      {"name": "Mandarin Orange", "size":10},
+      {"name": "Orange", "size":10}
+      ]},
+    {"name": "Apple/Pear", "size":5,"children": [
+      {"name": "Green Apple", "size":10},
+      {"name": "Red Apple", "size":10}
+      ]},
+    {"name": "Melon", "size":5, "children": [
+      {"name": "Watermelon", "size":10},
+      {"name": "Honeydew", "size":10},
+      {"name": "Canteloupe", "size":10}
+      ]},
+    {"name": "Grape", "size":5, "children": [
+      {"name": "White Grape", "size":10},
+      {"name": "Green Grape", "size":10},
+      {"name": "Red Grape", "size":10},
+      {"name": "Concord Grape", "size":10}
+      ]},
+    {"name": "Tropical Fruit", "size":5, "children": [
+      {"name": "Lychee", "size":10},
+      {"name": "Star Fruit", "size":10},
+      {"name": "Tamarind", "size":10},
+      {"name": "Passion Fruit", "size":10},
+      {"name": "Pineapple", "size":10},
+      {"name": "Mango", "size":10},
+      {"name": "Papaya", "size":10},
+      {"name": "Kiwi", "size":10},
+      {"name": "Banana", "size":10},
+      {"name": "Coconut", "size":10}
+      ]},
+    {"name": "Stone Fruit", "size":5, "children": [
+      {"name": "Peach", "size":10},
+      {"name": "Nectarine", "size":10},
+      {"name": "Apricot", "size":10},
+      {"name": "Plum", "size":10},
+      {"name": "Cherry", "size":10},
+      {"name": "Black Cherry", "size":10}
+      ]},
+    {"name": "Berry", "size":5, "children": [
+      {"name": "Cranberry", "size":10},
+      {"name": "Raspberry", "size":10},
+      {"name": "Strawberry", "size":10},
+      {"name": "Blueberry", "size":10},
+      {"name": "Red Currant", "size":10},
+      {"name": "Black Currant", "size":10}
+      ]},
+    {"name": "Dried Fruit", "size":10, "children": [
+      {"name": "Golden Raisin", "size":10},
+      {"name": "Raisin", "size":10},
+      {"name": "Dried Fig", "size":10},
+      {"name": "Dried Dates", "size":10},
+      {"name": "Prune", "size":10}
+      ]}
+  ]},
+  {"name": "Chocolate", "size":10, "children": [
+    {"name": "Cacao Nibs", "size":10},
+    {"name": "Dark Chocolate", "size":10},
+    {"name": "Bakers Chocolate", "size":10},
+    {"name": "Bittersweet Chocolate", "size":10},
+    {"name": "Cocoa Powder", "size":10},
+    {"name": "Milk Chocoate", "size":10}
+    ]},
+  {"name": "Sweet & Sugary", "size":10, "children": [
+    {"name": "Vanilla", "size":10},
+    {"name": "Nougat", "size":10},
+    {"name": "Honey", "size":10},
+    {"name": "Butter", "size":10},
+    {"name": "Cream", "size":10},
+    {"name": "Marshmallow", "size":10},
+    {"name": "Sugar Cane", "size":10},
+    {"name": "Brown Sugar", "size":10},
+    {"name": "Caramel", "size":10},
+    {"name": "Maple Syrup", "size":10},
+    {"name": "Molasses", "size":10},
+    {"name": "Cola", "size":10}
+    ]},
+  {"name": "Nut", "size":10, "children": [
+    {"name": "Walnut", "size":10},
+    {"name": "Peanut", "size":10},
+    {"name": "Cashew", "size":10},
+    {"name": "Pecan", "size":10},
+    {"name": "Hazelnut", "size":10},
+    {"name": "Almond", "size":10}
+    ]},
+  {"name": "Grain & Cereal", "size":10, "children": [
+    {"name": "Sweet Bread Pastry", "size":10},
+    {"name": "Granola", "size":10},
+    {"name": "Graham Cracker", "size":10},
+    {"name": "Rye", "size":10},
+    {"name": "Wheat", "size":10},
+    {"name": "Barley", "size":10},
+    {"name": "Fresh Bread", "size":10}
+    ]},
+  {"name": "Roast", "size":10, "children": [
+    {"name": "Toast", "size":10},
+    {"name": "Burnt Sugar", "size":10},
+    {"name": "Smokey", "size":10},
+    {"name": "Carbon", "size":10}
+
+    ]},
+  {"name": "Spice", "size":10, "children": [
+    {"name": "Black Pepper", "size":10},
+    {"name": "White Pepper", "size":10},
+    {"name": "Cinnamon", "size":10},
+    {"name": "Coriander", "size":10},
+    {"name": "Ginger", "size":10},
+    {"name": "Nutmeg", "size":10},
+    {"name": "Curry", "size":10},
+    {"name": "Licorice-Anise", "size":10},
+    {"name": "Clove", "size":10}
+
+    ]},
+  {"name": "Savory", "size":10, "children": [
+    {"name": "Leathery", "size":10},
+    {"name": "Meat-Like", "size":10},
+    {"name": "Soy Sauce", "size":10},
+    {"name": "Sundried Tomato", "size":10},
+    {"name": "Tomato", "size":10}
+
+    ]},
+  {"name": "Vegetal Earthy Herb", "size":10,"children": [
+    {"name": "Soil", "size":10},
+    {"name": "Fresh Wood", "size":10},
+    {"name": "Cedar", "size":10},
+    {"name": "Tobacco", "size":10},
+    {"name": "Hay Straw", "size":10},
+    {"name": "Leafy Greens", "size":10},
+    {"name": "Olive", "size":10},
+    {"name": "Green Pepper", "size":10},
+    {"name": "Squash", "size":10},
+    {"name": "Mushroom", "size":10},
+    {"name": "Sweet Pea", "size":10},
+    {"name": "Snow Pea", "size":10},
+    {"name": "Grassy", "size":10},
+    {"name": "Dill", "size":10},
+    {"name": "Sage", "size":10},
+    {"name": "Mint", "size":10},
+    {"name": "Green Tea", "size":10},
+    {"name": "Black Tea", "size":10},
+    {"name": "Hops", "size":10},
+    {"name": "Bergamot", "size":10}
+    ]},
+  {"name": "Floral", "size":10, "children": [
+    {"name": "Hibiscus", "size":10},
+    {"name": "Rose Hips", "size":10},
+    {"name": "Lavender", "size":10},
+    {"name": "Magnolia", "size":10},
+    {"name": "Jasmine-Honeysuckle", "size":10},
+
+    {"name": "Orange Blossom", "size":10},
+    {"name": "Lemongrass", "size":10}
+    ]}
+  ]
+}
